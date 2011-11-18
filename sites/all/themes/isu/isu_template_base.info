@@ -1,0 +1,36 @@
+; $Id
+name = WD ISU Base Template
+description = The base theme for Iowa State University
+package = Core
+version = 1.0
+core = 7.x
+engine = phptemplate
+
+; Regions this template supports
+regions[right_corner] = Right Corner
+regions[sidebar_first] = Sidebar First
+regions[sidebar_right] = Sidebar Right
+regions[help] = Help
+regions[above_content] = Above Content
+regions[titlebar] = Titlebar
+regions[content] = Content
+regions[footer] = Footer
+
+; Stylesheets
+stylesheets[all][] = base.css
+stylesheets[all][] = admin.css
+
+; Features
+features[] = favicon
+features[] = name
+features[] = slogan
+features[] = logo
+
+; Settings
+settings[isu_titlebar] = ''
+settings[isu_titlebar_show_link] = 0
+settings[isu_titlebar_link] = ''
+settings[isu_breadcrumb] = no
+settings[isu_breadcrumb_separator] = ' » '
+settings[isu_breadcrumb_home] = 1
+settings[logo] = 0
