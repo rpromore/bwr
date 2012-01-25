@@ -940,3 +940,12 @@ a{
 }
 
 }
+
+#block-views-latest-news-block {
+	width: 50%;
+	float: left;
+}
+#block-views-facebook-news-block {
+	width: 50%;
+	float: left;
+}
