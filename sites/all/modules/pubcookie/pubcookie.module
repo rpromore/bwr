@@ -84,7 +84,10 @@ function pubcookie_page() {
     if (!in_array($_pubcookie_user, $allowed_usernames)) {
       watchdog('pubcookie', '%user not in allowed usernames list', array('%user' => $_pubcookie_user));
       $account = user_load_by_name($_pubcookie_user);
-      if (isset($account->uid) && $account->uid != 1) {
+      if (is_array($account) && isset($account->uid) && $account->uid == 1) {
+        watchdog('pubcookie', '%user is superuser. Allowing access.', array('%user' => $_pubcookie_user));      
+      }
+      else {
         watchdog('pubcookie', '%user is not superuser. Denying access.', array('%user' => $_pubcookie_user));
         drupal_access_denied();
         drupal_exit();
@@ -136,7 +139,7 @@ function pubcookie_user_presave(&$edit, $account, $category) {
   global $_pubcookie_domain;
   // Set the mail column of the user table (which is typically blank for users with external auth) only if
   // pubcookie_user@pubcookie_domain is also an email address.
-  if ($account->is_new) {
+  if ($account->is_new && isset($_pubcookie_user)) {
     $edit['mail'] = variable_get('pubcookie_id_is_email', 1) ? "$_pubcookie_user@$_pubcookie_domain" : '';
     if (module_exists('profile')) {
       // Set profile values based on LDAP.
